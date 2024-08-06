@@ -14,7 +14,7 @@ const ClockComponent = ({ timezone }) => {
           minute: '2-digit',
           second: '2-digit'
         };
-        setCurrentTime(date.toLocaleTimeString('en-US', options));
+        setCurrentTime(date.toLocaleString());
       }
     };
 

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import SelectComponent from './SelectComponent';
-import ClockComponent from './ClockComponent';
 import { allTimezones } from 'react-timezone-select';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import InnerImageZoom from 'react-inner-image-zoom';
-import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'; // Import the styles
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 
 const timezoneOptions = Object.entries(allTimezones).map(([value, label]) => {
   const date = new Date();
@@ -14,7 +13,7 @@ const timezoneOptions = Object.entries(allTimezones).map(([value, label]) => {
 
   return {
     value,
-    label: `${label} (${gmtOffset})`, // Keep GMT offset in the available options
+    label: `${label} (${gmtOffset})`,
   };
 });
 
@@ -22,23 +21,39 @@ const customSelectStyle = {
   menuList: (provided) => ({
     ...provided,
     maxHeight: '20vh',
-  })
-}
+  }),
+};
 
 function App() {
   const [selectedTimezones, setSelectedTimezones] = useState([]);
   const [currentGMT, setCurrentGMT] = useState('');
+  const [localGMT, setLocalGMT] = useState('');
 
   useEffect(() => {
     const updateGMT = () => {
       const now = new Date();
-      setCurrentGMT(now.toGMTString());
+      setCurrentGMT(now.toLocaleString());
+
+      // Get local GMT offset
+      const localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const options = { timeZone: localTimezone, timeZoneName: 'short' };
+      const gmtOffset = now.toLocaleString('en-US', options).split(' ').pop();
+      setLocalGMT(gmtOffset); // Set local GMT offset
     };
 
     updateGMT();
     const interval = setInterval(updateGMT, 1000);
 
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const localTimezoneOption = timezoneOptions.find(option => option.value === localTimezone);
+
+    if (localTimezoneOption) {
+      setSelectedTimezones([localTimezoneOption]);
+    }
   }, []);
 
   const handleTimezoneChange = (selectedOption) => {
@@ -58,7 +73,7 @@ function App() {
     for (let hour = 0; hour < 24; hour++) {
       const localDate = new Date(date.setUTCHours(hour));
       const options = { timeZone: timezone, hour: '2-digit', minute: '2-digit', hour12: false };
-      localTimes.push(localDate.toLocaleString('en-US', options).split(':')[0]); // Get only the hour
+      localTimes.push(localDate.toLocaleString('en-GB', options).split(':')[0]); // Get only the hour
     }
     return localTimes;
   };
@@ -86,7 +101,7 @@ function App() {
           <div className="timezone-boxes">
             {selectedTimezones.map((timezone) => (
               <div key={timezone.value} className="timezone-box">
-                <span>{timezone.label.split(' (')[0]}</span> {/* Display only the label without GMT */}
+                <span>{timezone.label.split(' (')[0]}</span>
                 <button onClick={() => removeTimezone(timezone.value)} className="close-button">X</button>
               </div>
             ))}
@@ -94,30 +109,41 @@ function App() {
         </div>
 
         <div className="mb-4">
-          <h4 className="mb-3">Local Time Table</h4>
-          {selectedTimezones.length > 0 ? (
+         {selectedTimezones.length > 0 ? (
             <table className="table table-bordered">
               <thead>
                 <tr>
-                  <th>Local Time</th>
+                  <th>GMT+0</th> {/* Replace "GMT 0" with user's local GMT */}
                   {Array.from({ length: 24 }, (_, hour) => (
-                    <th key={hour}>{hour.toString().padStart(2, '0')}</th> // Display hours 00 to 23
+                    <th key={hour}>{hour.toString().padStart(2, '0')}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {selectedTimezones.map((timezone) => (
                   <tr key={timezone.value}>
-                    <td>{timezone.label.split(' (')[0]}</td> {/* Display timezone name */}
-                    {generateLocalTime(timezone.value).map((localTime, index) => (
-                      <td key={index}>{localTime}</td> // Display local time for each hour
-                    ))}
+                    <td>{timezone.label.split(' (')[0]}</td>
+                    {generateLocalTime(timezone.value).map((localTime, index) => {
+                      const hourValue = parseInt(localTime.split(':')[0], 10);
+                      const cellClass = (hourValue >= 9 && hourValue <= 17) ? 'highlight' : '';
+                      return (
+                        <td key={index} className={cellClass}>{localTime}</td>
+                      );
+                    })}
                   </tr>
                 ))}
               </tbody>
             </table>
           ) : (
-            <p>Please select time zones to display the local time table.</p>
+            <table className="table table-bordered">
+              <thead>
+                <tr>
+                  <th>GMT+0</th> {/* Replace "GMT 0" with user's local GMT */}
+                  {Array.from({ length: 24 }, (_, hour) => (
+                    <th key={hour}>{hour.toString().padStart(2, '0')}</th>
+                  ))}                </tr>
+              </thead>
+            </table>
           )}
         </div>
 

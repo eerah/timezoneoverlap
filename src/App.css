@@ -4,6 +4,7 @@
 
 .App-header {
   background-color: #282c34;
+  font-family: 'Roboto', sans-serif; /* Set Roboto as the default font */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -100,4 +101,52 @@
   font-weight: bold;
   margin-left: 10px;
   font-size: 16px; /* Adjust close button font size if needed */
+}
+
+/* Set the width of the table */
+.table {
+  width: 50%; /* Adjust as needed */
+  border-collapse: collapse; /* Merge borders */
+  position: center;
+  font-size: calc(2px + 2vmin);
+}
+
+/* Style for table cells */
+.table th, .table td {
+  border: none; /* Remove borders */
+  padding: 8px; /* Padding for cells */
+  text-align: center; /* Center align text */
+}
+
+/* Background color for table header */
+.table th {
+  background-color: #9a9996; /* Light gray for header */
+  color: #ebd89e; /* Color of the cell values */
+}
+
+.table th:first-child {
+  text-align: left;
+}
+
+/* Default background color for table cells */
+.table td {
+  background-color: #3c3836; /* Dark background for cells */
+  color: #ebd89e; /* Color of the cell values */
+}
+
+/* Color for the values of the first column */
+.table td:first-child {
+  color: #9a9996; /* Color for the first column values */
+  text-align: left;
+  padding-right: 40px; /* Adjust this value to increase/decrease space */
+}
+
+/* Highlight cells with values between 9 and 17 */
+.table td.highlight {
+  color: #e5a50a; /* Yellow background for highlighted cells */
+}
+
+/* Optional: Add a hover effect */
+.table tr:hover {
+  background-color: #f1f1f1; /* Light gray on hover */
 }
