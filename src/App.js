@@ -9,7 +9,6 @@ import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'; // Import the sty
 
 const timezoneOptions = Object.entries(allTimezones).map(([value, label]) => {
   const date = new Date();
-  const utcOffset = -date.getTimezoneOffset() / 60;
   const localOptions = { timeZone: value, timeZoneName: 'short' };
   const gmtOffset = date.toLocaleString('en-US', localOptions).split(' ').pop();
 
@@ -70,7 +69,7 @@ function App() {
 
         <div className="Timezone-container">
           <div className="Timezone-list">
-            <h4 className="mb-3 text-right">Available Time Zones:</h4>
+            <h4 className="mb-3">Available Time Zones</h4>
             <ul className="list-unstyled">
               {timezoneOptions.map(option => (
                 <li key={option.value} className="py-1">{option.label}</li>
@@ -80,10 +79,8 @@ function App() {
           <div className="Timezone-img">
             <InnerImageZoom
               src="https://upload.wikimedia.org/wikipedia/commons/e/eb/World_Time_Zones_Map_1.png"
-              zoomSrc="https://upload.wikimedia.org/wikipedia/commons/e/eb/World_Time_Zones_Map_1.png"
               alt="Earth"
-              className="img-fluid cursor-pointer"
-              zoomType="hover" // You can also use "click" for click-to-zoom
+              moveType="drag"
             />
           </div>
         </div>
