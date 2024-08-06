@@ -4,6 +4,8 @@ import ClockComponent from './ClockComponent';
 import { allTimezones } from 'react-timezone-select';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import InnerImageZoom from 'react-inner-image-zoom';
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'; // Import the styles
 
 const timezoneOptions = Object.entries(allTimezones).map(([value, label]) => {
   const date = new Date();
@@ -27,7 +29,6 @@ const customSelectStyle = {
 function App() {
   const [selectedTimezone, setSelectedTimezone] = useState(null);
   const [currentGMT, setCurrentGMT] = useState('');
-  const [isImageExpanded, setIsImageExpanded] = useState(false);
 
   useEffect(() => {
     const updateGMT = () => {
@@ -43,10 +44,6 @@ function App() {
 
   const handleTimezoneChange = (selectedOption) => {
     setSelectedTimezone(selectedOption);
-  };
-
-  const toggleImageExpansion = () => {
-    setIsImageExpanded(!isImageExpanded);
   };
 
   return (
@@ -81,27 +78,16 @@ function App() {
             </ul>
           </div>
           <div className="Timezone-img">
-            <img
+            <InnerImageZoom
               src="https://upload.wikimedia.org/wikipedia/commons/e/eb/World_Time_Zones_Map_1.png"
+              zoomSrc="https://upload.wikimedia.org/wikipedia/commons/e/eb/World_Time_Zones_Map_1.png"
               alt="Earth"
               className="img-fluid cursor-pointer"
-              onClick={toggleImageExpansion}
+              zoomType="hover" // You can also use "click" for click-to-zoom
             />
           </div>
         </div>
       </header>
-
-      {isImageExpanded && (
-        <div className="modal-overlay" onClick={toggleImageExpansion}>
-          <div className="modal-content">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/e/eb/World_Time_Zones_Map_1.png"
-              alt="Earth"
-              className="img-fluid"
-            />
-          </div>
-        </div>
-      )}
     </div>
   );
 }
