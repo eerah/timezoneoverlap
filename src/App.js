@@ -64,7 +64,7 @@ function App() {
 
         <div className="mb-4">
           <h3>Current GMT Time:</h3>
-          <p>{currentGMT}</p>
+          <p className="current-time">{currentGMT}</p>
         </div>
 
         <div className="Timezone-container">

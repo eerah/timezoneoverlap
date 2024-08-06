@@ -63,3 +63,9 @@
     margin-bottom: 20px;
   }
 }
+
+.current-time {
+  font-family: 'Roboto', sans-serif; /* Change to Roboto font */
+  color: #e5a50a; /* Change to your desired color */
+  font-size: 20px; /* Adjust the font size */
+}
