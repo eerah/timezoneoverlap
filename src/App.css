@@ -4,7 +4,7 @@
 
 .App-header {
   background-color: #282828;
-  font-family: 'Roboto', sans-serif; /* Set Roboto as the default font */
+  font-family: 'SF Mono', monospace; /* Set Roboto as the default font */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -16,25 +16,24 @@
 }
 
 /* Set a base font size and line height */
-body {
-  font-size: 14px;
-  line-height: 1.5;
-}
 
 .Timezone-container {
-  display: flex;
+  display: column;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: stretch; /* Stretch children to the same height */
   width: 100%;
-  height: 60vh;
-  margin-top: 20px;
+  height: 47.3vh;
+  overflow: hidden; /* Hide overflow on the container */
+}
+
+/* Ensure the list and image have the same height */
+.Timezone-list, .Timezone-img {
+  height: 100%; /* Make sure both elements have the same height */
 }
 
 .Timezone-list {
-  width: 30%;
-  font-size: 14px;
   overflow-y: auto;
-  padding-right: 20px;
+  padding-right: 10px;
 }
 
 .Timezone-list ul {
@@ -51,18 +50,14 @@ body {
 .Timezone-img {
   width: 65%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: right;
+  align-items: right;
 }
 
 @media (max-width: 768px) {
   .Timezone-container {
     flex-direction: column;
     height: auto;
-  }
-
-  .Timezone-list, .Timezone-img {
-    width: 100%;
   }
 
   .Timezone-list {
@@ -73,7 +68,6 @@ body {
 
 /* Current time styles */
 .current-time {
-  font-family: 'Roboto', sans-serif;
   color: #e5a50a;
   font-size: 20px;
 }
@@ -134,7 +128,7 @@ body {
   padding: 0.5rem 0.75rem;
   vertical-align: middle;
   border: none;
-  border-right: 1px solid #f2ead0;
+  border-right: 1px solid #57514e;
   height: 2.5rem; /* Set a fixed height */
 }
 

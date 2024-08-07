@@ -81,7 +81,7 @@ function App() {
 
         <div className="row mb-4">
           <div className="col-md-3">
-            <div className="mb-4 text-start"> {/* Align text to the left */}
+            <div className="mb-4">
               <SelectComponent
                 options={timezoneOptions}
                 onChange={handleTimezoneChange}
@@ -91,7 +91,7 @@ function App() {
               />
             </div>
 
-            <div className="mb-4 text-start"> {/* Align text to the left */}
+            <div className="mb-4">
               <div className="timezone-boxes">
                 {selectedTimezones.map((timezone) => (
                   <div key={timezone.value} className="timezone-box">
@@ -146,21 +146,30 @@ function App() {
           </div>
         </div>
 
-        <div className="Timezone-container">
-          <div className="Timezone-list">
-            <h4 className="mb-3">Available Time Zones</h4>
-            <ul className="list-unstyled">
-              {timezoneOptions.map(option => (
-                <li key={option.value} className="py-1">{option.label}</li>
-              ))}
-            </ul>
+        <div className="row mb-4">
+          <div className="col-md-3">
+            <div className="mb-4">
+              <div className="Timezone-container">
+                <div className="Timezone-list">
+                  <ul className="list-unstyled">
+                    {timezoneOptions.map(option => (
+                      <li key={option.value} className="py-1">{option.label}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="Timezone-img">
-            <InnerImageZoom
-              src="https://upload.wikimedia.org/wikipedia/commons/e/eb/World_Time_Zones_Map_1.png"
-              alt="Earth"
-              moveType="drag"
-            />
+          <div className="col-md-9">
+            <div className="mb-4">
+              <div className="Timezone-img">
+                <InnerImageZoom
+                  src="https://upload.wikimedia.org/wikipedia/commons/e/eb/World_Time_Zones_Map_1.png"
+                  alt="Earth"
+                  moveType="drag"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </header>
