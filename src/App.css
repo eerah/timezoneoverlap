@@ -1,9 +1,6 @@
 .App {
   text-align: center;
-  width: 100%; /* Ensure the App uses the full width */
-  margin: 0; /* Remove any margin */
 }
-
 
 .App-header {
   background-color: #282828;
@@ -12,11 +9,16 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  font-size: calc(10px + 2vmin);
   color: #ebd89e;
   padding: 20px;
+  padding-top: 60px;
   position: relative; /* Ensure the header is the positioning context for absolute elements */
-  width: 100%; /* Ensure the header uses the full width */
+}
+
+/* Set a base font size and line height */
+body {
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .Timezone-container {
@@ -69,11 +71,13 @@
   }
 }
 
+/* Current time styles */
 .current-time {
-  font-family: 'Roboto', sans-serif; /* Change to Roboto font */
-  color: #e5a50a; /* Change to your desired color */
-  font-size: 20px; /* Adjust the font size */
+  font-family: 'Roboto', sans-serif;
+  color: #e5a50a;
+  font-size: 20px;
 }
+
 
 .timezone-boxes {
   display: flex;
@@ -81,18 +85,20 @@
   gap: 10px; /* Space between boxes */
 }
 
+/* Timezone box styles */
 .timezone-box {
   background-color: #57514e;
   border-radius: 5px;
-  padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 2.5rem; /* Match table cell height */
   width: 150px; /* Set a fixed width */
-  height: 50px; /* Set a fixed height */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
-  font-size: 14px; /* Adjust font size here */
+  padding: 0 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 14px;
   overflow: hidden; /* Prevent overflow of text */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
 }
 
 .close-button {
@@ -101,26 +107,35 @@
   color: #ebd89e;
   cursor: pointer;
   font-weight: bold;
+  padding: 0;
   margin-left: 10px;
-  font-size: 16px; /* Adjust close button font size if needed */
+  font-size: 16px;
+  line-height: 1;
 }
 
-/* Set the width of the table */
+.current-gmt-container {
+  position: absolute; /* Use absolute positioning */
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  border-radius: 1px; /* Optional: rounded corners */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2); /* Optional: shadow effect */
+}
+
+
+
+/* Table styles */
 .table {
-  width: 80%; /* Adjust as needed */
-  border-collapse: collapse; /* Merge borders */
-  font-size: calc(2px + 1.5vmin);
+  width: 100%;
+  border-collapse: collapse;
 }
 
 /* Style for table cells */
 .table th, .table td {
-  border: none; /* Remove all borders */
-  padding: 8px; /* Padding for cells */
-  text-align: center; /* Center align text */
-  border-right: 1px solid #f2ead0; /* Add right border for vertical lines */
-  height: calc(1.5em + .75rem + 2px); /* Match Bootstrap's form-control height */
-  padding: .375rem .75rem; /* Match Bootstrap's form-control padding */
+  padding: 0.5rem 0.75rem;
   vertical-align: middle;
+  border: none;
+  border-right: 1px solid #f2ead0;
+  height: 2.5rem; /* Set a fixed height */
 }
 
 /* Remove the right border from the last cell in each row */
@@ -137,6 +152,7 @@
 .table th {
   background-color: #57514e; /* Light gray for header */
   color: #ebd89e; /* Color of the cell values */
+  font-weight: normal;
 }
 
 /* Align the first column header to the left */
@@ -170,12 +186,4 @@
 /* Remove bottom borders from table rows */
 .table tr {
   border: none; /* Ensure no borders for rows */
-}
-
-.current-gmt-container {
-  position: absolute; /* Use absolute positioning */
-  top: 10px; /* Adjust as needed */
-  right: 10px; /* Adjust as needed */
-  border-radius: 1px; /* Optional: rounded corners */
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2); /* Optional: shadow effect */
 }

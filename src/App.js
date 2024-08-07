@@ -74,7 +74,6 @@ function App() {
   return (
     <div className="App container-fluid">
       <header className="App-header">
-        <h2 className="mb-4">Time Zones</h2>
         {/* Container for current GMT time */}
         <div className="current-gmt-container">
           <p className="current-time">{currentGMT}</p>
@@ -93,7 +92,6 @@ function App() {
             </div>
 
             <div className="mb-4 text-start"> {/* Align text to the left */}
-              <h4 className="mb-3">Selected Time Zones:</h4>
               <div className="timezone-boxes">
                 {selectedTimezones.map((timezone) => (
                   <div key={timezone.value} className="timezone-box">
