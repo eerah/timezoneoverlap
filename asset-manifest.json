@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/timezoneoverlap/static/css/main.e464bd34.css",
+    "main.js": "/timezoneoverlap/static/js/main.15dfdc5e.js",
+    "static/js/453.2dcab90f.chunk.js": "/timezoneoverlap/static/js/453.2dcab90f.chunk.js",
+    "index.html": "/timezoneoverlap/index.html",
+    "main.e464bd34.css.map": "/timezoneoverlap/static/css/main.e464bd34.css.map",
+    "main.15dfdc5e.js.map": "/timezoneoverlap/static/js/main.15dfdc5e.js.map",
+    "453.2dcab90f.chunk.js.map": "/timezoneoverlap/static/js/453.2dcab90f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e464bd34.css",
+    "static/js/main.15dfdc5e.js"
+  ]
+}
