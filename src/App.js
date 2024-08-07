@@ -27,18 +27,11 @@ const customSelectStyle = {
 function App() {
   const [selectedTimezones, setSelectedTimezones] = useState([]);
   const [currentGMT, setCurrentGMT] = useState('');
-  const [localGMT, setLocalGMT] = useState('');
 
   useEffect(() => {
     const updateGMT = () => {
       const now = new Date();
       setCurrentGMT(now.toLocaleString());
-
-      // Get local GMT offset
-      const localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      const options = { timeZone: localTimezone, timeZoneName: 'short' };
-      const gmtOffset = now.toLocaleString('en-US', options).split(' ').pop();
-      setLocalGMT(gmtOffset); // Set local GMT offset
     };
 
     updateGMT();
@@ -82,69 +75,77 @@ function App() {
     <div className="App container-fluid">
       <header className="App-header">
         <h2 className="mb-4">Time Zones</h2>
-        <div className="mb-4">
-          <SelectComponent
-            options={timezoneOptions}
-            onChange={handleTimezoneChange}
-            placeholder="Select a timezone"
-            styles={customSelectStyle}
-          />
-        </div>
-
-        <div className="mb-4">
-          <h3>Current GMT Time:</h3>
+        {/* Container for current GMT time */}
+        <div className="current-gmt-container">
           <p className="current-time">{currentGMT}</p>
         </div>
 
-        <div className="mb-4">
-          <h4 className="mb-3">Selected Time Zones:</h4>
-          <div className="timezone-boxes">
-            {selectedTimezones.map((timezone) => (
-              <div key={timezone.value} className="timezone-box">
-                <span>{timezone.label.split(' (')[0]}</span>
-                <button onClick={() => removeTimezone(timezone.value)} className="close-button">X</button>
-              </div>
-            ))}
-          </div>
-        </div>
+        <div className="row mb-4">
+          <div className="col-md-3">
+            <div className="mb-4 text-start"> {/* Align text to the left */}
+              <SelectComponent
+                options={timezoneOptions}
+                onChange={handleTimezoneChange}
+                placeholder="Select a timezone"
+                styles={customSelectStyle}
+                className="form-control"
+              />
+            </div>
 
-        <div className="mb-4">
-         {selectedTimezones.length > 0 ? (
-            <table className="table table-bordered">
-              <thead>
-                <tr>
-                  <th>GMT+0</th> {/* Replace "GMT 0" with user's local GMT */}
-                  {Array.from({ length: 24 }, (_, hour) => (
-                    <th key={hour}>{hour.toString().padStart(2, '0')}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
+            <div className="mb-4 text-start"> {/* Align text to the left */}
+              <h4 className="mb-3">Selected Time Zones:</h4>
+              <div className="timezone-boxes">
                 {selectedTimezones.map((timezone) => (
-                  <tr key={timezone.value}>
-                    <td>{timezone.label.split(' (')[0]}</td>
-                    {generateLocalTime(timezone.value).map((localTime, index) => {
-                      const hourValue = parseInt(localTime.split(':')[0], 10);
-                      const cellClass = (hourValue >= 9 && hourValue <= 17) ? 'highlight' : '';
-                      return (
-                        <td key={index} className={cellClass}>{localTime}</td>
-                      );
-                    })}
-                  </tr>
+                  <div key={timezone.value} className="timezone-box">
+                    <span>{timezone.label.split(' (')[0]}</span>
+                    <button onClick={() => removeTimezone(timezone.value)} className="close-button">X</button>
+                  </div>
                 ))}
-              </tbody>
-            </table>
-          ) : (
-            <table className="table table-bordered">
-              <thead>
-                <tr>
-                  <th>GMT+0</th> {/* Replace "GMT 0" with user's local GMT */}
-                  {Array.from({ length: 24 }, (_, hour) => (
-                    <th key={hour}>{hour.toString().padStart(2, '0')}</th>
-                  ))}                </tr>
-              </thead>
-            </table>
-          )}
+              </div>
+            </div>
+          </div>
+
+          <div className="col-md-6">
+            <div className="mb-4">
+              {selectedTimezones.length > 0 ? (
+                <table className="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>GMT+0</th> {/* Replace "GMT 0" with user's local GMT */}
+                      {Array.from({ length: 24 }, (_, hour) => (
+                        <th key={hour}>{hour.toString().padStart(2, '0')}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {selectedTimezones.map((timezone) => (
+                      <tr key={timezone.value}>
+                        <td>{timezone.label.split(' (')[0]}</td>
+                        {generateLocalTime(timezone.value).map((localTime, index) => {
+                          const hourValue = parseInt(localTime.split(':')[0], 10);
+                          const cellClass = (hourValue >= 9 && hourValue <= 17) ? 'highlight' : '';
+                          return (
+                            <td key={index} className={cellClass}>{localTime}</td>
+                          );
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <table className="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>GMT+0</th> {/* Replace "GMT 0" with user's local GMT */}
+                      {Array.from({ length: 24 }, (_, hour) => (
+                        <th key={hour}>{hour.toString().padStart(2, '0')}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                </table>
+              )}
+            </div>
+          </div>
         </div>
 
         <div className="Timezone-container">

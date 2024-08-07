@@ -1,18 +1,22 @@
 .App {
   text-align: center;
+  width: 100%; /* Ensure the App uses the full width */
+  margin: 0; /* Remove any margin */
 }
 
+
 .App-header {
-  background-color: #282c34;
+  background-color: #282828;
   font-family: 'Roboto', sans-serif; /* Set Roboto as the default font */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #ebd89e;
   padding: 20px;
+  position: relative; /* Ensure the header is the positioning context for absolute elements */
+  width: 100%; /* Ensure the header uses the full width */
 }
 
 .Timezone-container {
@@ -71,7 +75,6 @@
   font-size: 20px; /* Adjust the font size */
 }
 
-
 .timezone-boxes {
   display: flex;
   flex-wrap: wrap;
@@ -79,8 +82,7 @@
 }
 
 .timezone-box {
-  background-color: #77767b;
-  border: 1px solid #ced4da;
+  background-color: #57514e;
   border-radius: 5px;
   padding: 10px;
   display: flex;
@@ -96,7 +98,7 @@
 .close-button {
   background: none;
   border: none;
-  color: #deddda;
+  color: #ebd89e;
   cursor: pointer;
   font-weight: bold;
   margin-left: 10px;
@@ -105,25 +107,39 @@
 
 /* Set the width of the table */
 .table {
-  width: 50%; /* Adjust as needed */
+  width: 80%; /* Adjust as needed */
   border-collapse: collapse; /* Merge borders */
-  position: center;
-  font-size: calc(2px + 2vmin);
+  font-size: calc(2px + 1.5vmin);
 }
 
 /* Style for table cells */
 .table th, .table td {
-  border: none; /* Remove borders */
+  border: none; /* Remove all borders */
   padding: 8px; /* Padding for cells */
   text-align: center; /* Center align text */
+  border-right: 1px solid #f2ead0; /* Add right border for vertical lines */
+  height: calc(1.5em + .75rem + 2px); /* Match Bootstrap's form-control height */
+  padding: .375rem .75rem; /* Match Bootstrap's form-control padding */
+  vertical-align: middle;
 }
 
-/* Background color for table header */
+/* Remove the right border from the last cell in each row */
+.table tr td:last-child,
+.table tr th:last-child {
+  border-right: none; /* Remove right border for the last cell */
+}
+
+/* Remove horizontal borders */
+.table tr {
+  border-bottom: none; /* Ensure no bottom border for each row */
+}
+
 .table th {
-  background-color: #9a9996; /* Light gray for header */
+  background-color: #57514e; /* Light gray for header */
   color: #ebd89e; /* Color of the cell values */
 }
 
+/* Align the first column header to the left */
 .table th:first-child {
   text-align: left;
 }
@@ -136,7 +152,7 @@
 
 /* Color for the values of the first column */
 .table td:first-child {
-  color: #9a9996; /* Color for the first column values */
+  color: #ebd89e; /* Color for the first column values */
   text-align: left;
   padding-right: 40px; /* Adjust this value to increase/decrease space */
 }
@@ -149,4 +165,17 @@
 /* Optional: Add a hover effect */
 .table tr:hover {
   background-color: #f1f1f1; /* Light gray on hover */
+}
+
+/* Remove bottom borders from table rows */
+.table tr {
+  border: none; /* Ensure no borders for rows */
+}
+
+.current-gmt-container {
+  position: absolute; /* Use absolute positioning */
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  border-radius: 1px; /* Optional: rounded corners */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2); /* Optional: shadow effect */
 }
