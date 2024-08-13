@@ -6,6 +6,7 @@ import './App.css';
 import InnerImageZoom from 'react-inner-image-zoom';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 
+
 const timezoneOptions = Object.entries(allTimezones).map(([value, label]) => {
   const date = new Date();
   const localOptions = { timeZone: value, timeZoneName: 'short' };
@@ -80,7 +81,7 @@ function App() {
         </div>
 
         <div className="row mb-4">
-          <div className="col-md-3">
+          <div className="col-md-10">
             <div className="mb-4">
               <SelectComponent
                 options={timezoneOptions}
@@ -102,50 +103,50 @@ function App() {
               </div>
             </div>
           </div>
-
-          <div className="col-md-6">
+        </div>
+        <div className="row mb-4">
+          <div className="col-md-10">
             <div className="mb-4">
-              {selectedTimezones.length > 0 ? (
-                <table className="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th>GMT+0</th> {/* Replace "GMT 0" with user's local GMT */}
-                      {Array.from({ length: 24 }, (_, hour) => (
-                        <th key={hour}>{hour.toString().padStart(2, '0')}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {selectedTimezones.map((timezone) => (
-                      <tr key={timezone.value}>
-                        <td>{timezone.label.split(' (')[0]}</td>
-                        {generateLocalTime(timezone.value).map((localTime, index) => {
-                          const hourValue = parseInt(localTime.split(':')[0], 10);
-                          const cellClass = (hourValue >= 9 && hourValue <= 17) ? 'highlight' : '';
-                          return (
-                            <td key={index} className={cellClass}>{localTime}</td>
-                          );
-                        })}
+                {selectedTimezones.length > 0 ? (
+                  <table className="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>GMT+0</th> {/* Replace "GMT 0" with user's local GMT */}
+                        {Array.from({ length: 24 }, (_, hour) => (
+                          <th key={hour}>{hour.toString().padStart(2, '0')}</th>
+                        ))}
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              ) : (
-                <table className="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th>GMT+0</th> {/* Replace "GMT 0" with user's local GMT */}
-                      {Array.from({ length: 24 }, (_, hour) => (
-                        <th key={hour}>{hour.toString().padStart(2, '0')}</th>
+                    </thead>
+                    <tbody>
+                      {selectedTimezones.map((timezone) => (
+                        <tr key={timezone.value}>
+                          <td>{timezone.label.split(' (')[0]}</td>
+                          {generateLocalTime(timezone.value).map((localTime, index) => {
+                            const hourValue = parseInt(localTime.split(':')[0], 10);
+                            const cellClass = (hourValue >= 9 && hourValue <= 17) ? 'highlight' : '';
+                            return (
+                              <td key={index} className={cellClass}>{localTime}</td>
+                            );
+                          })}
+                        </tr>
                       ))}
-                    </tr>
-                  </thead>
-                </table>
-              )}
+                    </tbody>
+                  </table>
+                ) : (
+                  <table className="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>GMT+0</th> {/* Replace "GMT 0" with user's local GMT */}
+                        {Array.from({ length: 24 }, (_, hour) => (
+                          <th key={hour}>{hour.toString().padStart(2, '0')}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                  </table>
+                )}
             </div>
           </div>
         </div>
-
         <div className="row mb-4">
           <div className="col-md-3">
             <div className="mb-4">

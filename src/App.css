@@ -64,6 +64,27 @@
     max-height: 30vh;
     margin-bottom: 20px;
   }
+
+  .table {
+    display: block; /* Change display to block */
+    width: 100%; /* Full width */
+    overflow-x: auto; /* Allow horizontal scrolling */
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+
+  .table th, .table td {
+    display: block; /* Change cells to block */
+    text-align: left; /* Align text to the left */
+    padding: 0.5rem; /* Adjust padding */
+    border: none; /* Remove borders */
+  }
+
+  .table th {
+    background-color: #57514e; /* Keep header background */
+    position: sticky; /* Make header sticky */
+    top: 0; /* Stick to the top */
+    z-index: 10; /* Ensure it appears above other content */
+  }
 }
 
 /* Current time styles */
@@ -120,7 +141,7 @@
 /* Table styles */
 .table {
   width: 100%;
-  border-collapse: collapse;
+  table-layout: fixed; /* Use fixed layout */
 }
 
 /* Style for table cells */
@@ -180,4 +201,13 @@
 /* Remove bottom borders from table rows */
 .table tr {
   border: none; /* Ensure no borders for rows */
+}
+
+.table td.highlight {
+  background-color: rgba(229, 165, 10, 0.2); /* Use a subtle background color */
+}
+
+.table-responsive {
+  overflow-x: auto; /* Allow horizontal scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
