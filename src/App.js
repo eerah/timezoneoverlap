@@ -81,7 +81,7 @@ function App() {
         </div>
 
         <div className="row mb-4">
-          <div className="col-md-10">
+          <div className="col-md-12">
             <div className="mb-4">
               <SelectComponent
                 options={timezoneOptions}
@@ -105,7 +105,7 @@ function App() {
           </div>
         </div>
         <div className="row mb-4">
-          <div className="col-md-10">
+          <div className="col-md-12">
             <div className="mb-4">
                 {selectedTimezones.length > 0 ? (
                   <table className="table table-bordered">

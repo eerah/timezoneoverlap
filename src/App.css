@@ -19,6 +19,8 @@
 
 .Timezone-container {
   display: column;
+  float: right;
+  align-items: stretch;
   justify-content: space-between;
   align-items: stretch; /* Stretch children to the same height */
   width: 100%;
@@ -26,30 +28,20 @@
   overflow: hidden; /* Hide overflow on the container */
 }
 
-/* Ensure the list and image have the same height */
-.Timezone-list, .Timezone-img {
-  height: 100%; /* Make sure both elements have the same height */
-}
 
 .Timezone-list {
   overflow-y: auto;
-  padding-right: 10px;
+  height: 98rem;
 }
 
 .Timezone-list ul {
   list-style-type: none;
-  padding: 0;
-  margin: 0;
   text-align: right;
 }
 
-.Timezone-list li {
-  padding: 5px 0;
-}
-
 .Timezone-img {
-  width: 65%;
-  display: flex;
+  width: 60%;
+  display: column;
   justify-content: right;
   align-items: right;
 }
@@ -108,7 +100,7 @@
   justify-content: space-between;
   align-items: center;
   height: 2.5rem; /* Match table cell height */
-  width: 150px; /* Set a fixed width */
+  width: 350px; /* Set a fixed width */
   padding: 0 0.75rem;
   margin-bottom: 0.5rem;
   font-size: 14px;
@@ -136,8 +128,6 @@
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2); /* Optional: shadow effect */
 }
 
-
-
 /* Table styles */
 .table {
   width: 100%;
@@ -146,11 +136,10 @@
 
 /* Style for table cells */
 .table th, .table td {
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 0rem;
   vertical-align: middle;
   border: none;
   border-right: 1px solid #57514e;
-  height: 2.5rem; /* Set a fixed height */
 }
 
 /* Remove the right border from the last cell in each row */
@@ -161,6 +150,8 @@
 
 /* Remove horizontal borders */
 .table tr {
+  height: 1rem;
+  text-align: center;
   border-bottom: none; /* Ensure no bottom border for each row */
 }
 
@@ -168,6 +159,7 @@
   background-color: #57514e; /* Light gray for header */
   color: #ebd89e; /* Color of the cell values */
   font-weight: normal;
+  border-color: #282828;
 }
 
 /* Align the first column header to the left */
@@ -185,7 +177,16 @@
 .table td:first-child {
   color: #ebd89e; /* Color for the first column values */
   text-align: left;
-  padding-right: 40px; /* Adjust this value to increase/decrease space */
+}
+
+table th:first-child, /* Target the first column header */
+table td:first-child { /* Target the first column data cells */
+  min-width: 150px; /* Set a minimum width to prevent shrinking */
+  width: 20%; /* Adjust based on your needs */
+  white-space: nowrap; /* Prevent text from wrapping to the next line */
+  overflow: hidden; /* Hide any overflowed content */
+  text-overflow: ellipsis; /* Optional: Show ellipsis for overflowed content */
+  padding: 5px;
 }
 
 /* Highlight cells with values between 9 and 17 */
@@ -208,6 +209,5 @@
 }
 
 .table-responsive {
-  overflow-x: auto; /* Allow horizontal scrolling */
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
