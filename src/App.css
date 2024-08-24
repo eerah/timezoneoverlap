@@ -46,39 +46,6 @@
   align-items: right;
 }
 
-@media (max-width: 768px) {
-  .Timezone-container {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .Timezone-list {
-    max-height: 30vh;
-    margin-bottom: 20px;
-  }
-
-  .table {
-    display: block; /* Change display to block */
-    width: 100%; /* Full width */
-    overflow-x: auto; /* Allow horizontal scrolling */
-    white-space: nowrap; /* Prevent text wrapping */
-  }
-
-  .table th, .table td {
-    display: block; /* Change cells to block */
-    text-align: left; /* Align text to the left */
-    padding: 0.5rem; /* Adjust padding */
-    border: none; /* Remove borders */
-  }
-
-  .table th {
-    background-color: #57514e; /* Keep header background */
-    position: sticky; /* Make header sticky */
-    top: 0; /* Stick to the top */
-    z-index: 10; /* Ensure it appears above other content */
-  }
-}
-
 /* Current time styles */
 .current-time {
   color: #e5a50a;
@@ -89,7 +56,7 @@
 .timezone-boxes {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* Space between boxes */
+  gap: 5px; /* Space between boxes */
 }
 
 /* Timezone box styles */
@@ -100,7 +67,7 @@
   justify-content: space-between;
   align-items: center;
   height: 2.5rem; /* Match table cell height */
-  width: 350px; /* Set a fixed width */
+  width: 340px; /* Set a fixed width */
   padding: 0 0.75rem;
   margin-bottom: 0.5rem;
   font-size: 14px;
@@ -210,4 +177,57 @@ table td:first-child { /* Target the first column data cells */
 
 .table-responsive {
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Rounod corners for the table */
+table { 
+  border-collapse: separate;
+  border-left: 0;
+  border-radius: 9px;
+  border-spacing: 0px;
+}
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+  border-collapse: separate;
+}
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+th, td {
+  padding: 5px 4px 6px 4px; 
+  text-align: left;
+  vertical-align: top;
+}
+thead:first-child tr:first-child th:first-child, tbody:first-child tr:first-child td:first-child {
+  border-radius: 8px 0 0 0;
+}
+thead:last-child tr:last-child th:last-child, tbody:last-child tr:last-child td:last-child {
+  border-radius: 0 0 8px 0;
+}
+thead:first-child tr:first-child th:last-child, tbody:first-child tr:first-child td:first-child {
+  border-radius: 0 8px 0 0;
+}
+
+thead:last-child tr:last-child th:first-child, tbody:last-child tr:last-child td:first-child {
+  border-radius: 0 0 0 8px;
+}
+
+@media (max-width: 768px) {
+  .table {
+    font-size: 1.5vw;
+  }
+
+  .table th:first-child {
+  }
+
+  .table th, .table td {
+  }
+
+  .table th {
+    max-width: 10vw;
+  } 
 }
